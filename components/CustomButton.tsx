@@ -2,12 +2,15 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CustomButton = () => {
+  const handleNavigateToHome = () => {
+    console.log("pressed");
+  };
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity>
         <Text style={styles.cancelButton}>Cancel</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleNavigateToHome}>
         <Text style={styles.signupButton}>SignUp</Text>
       </TouchableOpacity>
     </View>
