@@ -1,9 +1,24 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const CustomButton = () => {
+type loginFormProps = {
+  errors: {
+    identifier?: string;
+    password?: string;
+  };
+  validate: () => boolean | object;
+};
+
+const CustomButton = ({ errors, validate }: loginFormProps) => {
+  // console.log(errors, "sdksjdksjdk", validate);
+  const router = useRouter();
   const handleNavigateToHome = () => {
+    const isValid = validate();
     console.log("pressed");
+    if (isValid) {
+      router.push("/HomeScreen");
+    }
   };
   return (
     <View style={styles.buttonContainer}>
