@@ -1,14 +1,7 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React, { useState } from "react";
-import {
-  Alert,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { StatusBar, StyleSheet, Text, TextInput, View } from "react-native";
 import CustomButton from "../../components/CustomButton";
 import CustomCheckBox from "../../components/CustomCheckBox";
 
@@ -36,7 +29,8 @@ export default function SignUpPage() {
     const errorField: errorFields = {};
     console.log(errors, "errororororororos", errorField);
     if (!identifier.trim() || !password) {
-      Alert.alert("Erroy", "Please fill all fields");
+      // Alert.alert("Error", "Please fill all fields");
+      alert("enter all fields");
       return false;
     }
     console.log("validate function called");
@@ -64,10 +58,10 @@ export default function SignUpPage() {
         <View style={styles.inputsContainer}>
           <View style={styles.userInfoContainer1}>
             <View>
-              <Text style={styles.nameText}>identifier or Email</Text>
+              <Text style={styles.nameText}>Username or Email</Text>
               <TextInput
                 placeholder="Enter your name or email"
-                maxLength={10}
+                maxLength={20}
                 style={styles.inputField}
                 value={identifier || ""}
                 onChangeText={(text) => handleidentifierText(text)}
@@ -96,7 +90,15 @@ export default function SignUpPage() {
             <CustomCheckBox />
           </View>
         </View>
-        <CustomButton errors={errors} validate={validate} />
+        <CustomButton
+          errors={errors}
+          setErrors={setErrors}
+          validate={validate}
+          identifier={identifier}
+          setIdentifier={setIdentifier}
+          password={password}
+          setPassword={setPassword}
+        />
         <View style={styles.vectorIconsContainer}>
           <AntDesign
             name="google"

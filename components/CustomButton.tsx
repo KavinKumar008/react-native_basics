@@ -7,10 +7,23 @@ type loginFormProps = {
     identifier?: string;
     password?: string;
   };
+  setErrors: (errors: { identifier?: string; password?: string }) => void;
   validate: () => boolean | object;
+  identifier?: string;
+  setIdentifier: (value: string) => void;
+  password?: string;
+  setPassword: (value: string) => void;
 };
 
-const CustomButton = ({ errors, validate }: loginFormProps) => {
+const CustomButton = ({
+  errors,
+  validate,
+  identifier,
+  password,
+  setErrors,
+  setIdentifier,
+  setPassword,
+}: loginFormProps) => {
   // console.log(errors, "sdksjdksjdk", validate);
   const router = useRouter();
   const handleNavigateToHome = () => {
@@ -20,9 +33,15 @@ const CustomButton = ({ errors, validate }: loginFormProps) => {
       router.push("/HomeScreen");
     }
   };
+
+  const handleCancelButton = () => {
+    setIdentifier("");
+    setPassword("");
+    setErrors({});
+  };
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleCancelButton}>
         <Text style={styles.cancelButton}>Cancel</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleNavigateToHome}>
